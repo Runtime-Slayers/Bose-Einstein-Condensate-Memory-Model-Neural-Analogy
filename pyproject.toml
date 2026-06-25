@@ -1,0 +1,79 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "bec-memory"
+version = "0.1.0"
+description = "Bose-Einstein Condensate analogy model for human memory dynamics"
+readme = "README.md"
+license = { file = "LICENSE" }
+authors = [
+  { name = "Runtime-Slayers", url = "https://github.com/Runtime-Slayers" }
+]
+keywords = [
+  "bose-einstein condensate",
+  "memory model",
+  "cognitive science",
+  "neural analogy",
+  "quantum physics",
+  "forgetting curve",
+  "Gross-Pitaevskii",
+  "Bogoliubov",
+]
+classifiers = [
+  "Development Status :: 3 - Alpha",
+  "Intended Audience :: Science/Research",
+  "License :: OSI Approved :: MIT License",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.9",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Topic :: Scientific/Engineering :: Physics",
+  "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
+requires-python = ">=3.9"
+dependencies = [
+  "numpy>=1.21",
+  "scipy>=1.7",
+  "matplotlib>=3.4",
+]
+
+[project.optional-dependencies]
+dev = [
+  "pytest>=7.0",
+  "pytest-cov>=4.0",
+  "ruff>=0.4",
+]
+notebook = [
+  "jupyter>=1.0",
+  "ipywidgets>=8.0",
+]
+
+[project.urls]
+Homepage = "https://github.com/Runtime-Slayers/Bose-Einstein-Condensate-Memory-Model-Neural-Analogy"
+Repository = "https://github.com/Runtime-Slayers/Bose-Einstein-Condensate-Memory-Model-Neural-Analogy"
+"Bug Tracker" = "https://github.com/Runtime-Slayers/Bose-Einstein-Condensate-Memory-Model-Neural-Analogy/issues"
+
+[project.scripts]
+bec-validate = "experiments.p52_real_data:main"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["bec_memory*", "experiments*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-v --tb=short"
+
+[tool.ruff]
+line-length = 95
+target-version = "py39"
+
+[tool.ruff.lint]
+select = ["E", "W", "F", "I", "N", "UP"]
+ignore = ["E501"]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/*" = ["S101"]

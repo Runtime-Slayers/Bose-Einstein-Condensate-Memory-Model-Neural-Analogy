@@ -1,0 +1,116 @@
+{
+  "bec_parameters": {
+    "source": "Anderson 1995 Science 269:198; Davis 1995 PRL 75:3969 (Nobel Prize 2001)",
+    "experiments": {
+      "Cornell-Wieman 1995 (Rb-87)": {
+        "atom": "Rb-87",
+        "Tc_nK": 170,
+        "N_atoms": 2000,
+        "trap_freq_Hz": 180,
+        "scattering_length_a0": 100,
+        "source": "Anderson et al. 1995 Science 269:198 (Nobel 2001)"
+      },
+      "Ketterle 1995 (Na-23)": {
+        "atom": "Na-23",
+        "Tc_nK": 2000,
+        "N_atoms": 500000.0,
+        "trap_freq_Hz": 20,
+        "scattering_length_a0": 52,
+        "source": "Davis et al. 1995 PRL 75:3969 (Nobel 2001)"
+      },
+      "MIT 1997 (Na-23, large)": {
+        "atom": "Na-23",
+        "Tc_nK": 4000,
+        "N_atoms": 5000000.0,
+        "trap_freq_Hz": 10,
+        "scattering_length_a0": 52,
+        "source": "Mewes et al. 1997 PRL 78:582"
+      },
+      "NIST 2001 (Rb-87, lattice)": {
+        "atom": "Rb-87",
+        "Tc_nK": 50,
+        "N_atoms": 10000.0,
+        "trap_freq_Hz": 500,
+        "scattering_length_a0": 100,
+        "source": "Greiner et al. 2002 Nature 415:39"
+      }
+    }
+  },
+  "condensate_fraction": {
+    "source": "Bagnato 1987 PRA 35:4354; Pitaevskii & Stringari 2003 BEC book (Oxford)",
+    "model": "n0/N = max(0, 1-(T/Tc)^3) for harmonic trap",
+    "results": {
+      "Cornell-Wieman 1995 (Rb-87)": {
+        "Tc_nK": 170,
+        "frac_at_half_Tc": 0.875,
+        "frac_at_0dot9Tc": 0.2709999999999999
+      },
+      "Ketterle 1995 (Na-23)": {
+        "Tc_nK": 2000,
+        "frac_at_half_Tc": 0.875,
+        "frac_at_0dot9Tc": 0.2709999999999999
+      },
+      "MIT 1997 (Na-23, large)": {
+        "Tc_nK": 4000,
+        "frac_at_half_Tc": 0.875,
+        "frac_at_0dot9Tc": 0.2709999999999999
+      },
+      "NIST 2001 (Rb-87, lattice)": {
+        "Tc_nK": 50,
+        "frac_at_half_Tc": 0.875,
+        "frac_at_0dot9Tc": 0.2709999999999999
+      }
+    }
+  },
+  "neural_analogy": {
+    "source": "Penrose-Hameroff 1996 Math Comp Simul 40:453; Strogatz 2000 Physica D 143:1-20",
+    "note": "BEC coherence length \u2194 hippocampal memory consolidation radius analogy",
+    "metrics": {
+      "coherence_length_um": [
+        0.828936,
+        0.241674,
+        0.17089,
+        1.528483
+      ],
+      "memory_capacity_bits": [
+        2000.0,
+        500000.0,
+        5000000.0,
+        10000.0
+      ],
+      "decoherence_time_ms": [
+        0.149773,
+        0.012731,
+        0.006365,
+        0.509229
+      ],
+      "temp_fraction": [
+        0.3,
+        0.3,
+        0.3,
+        0.3
+      ]
+    }
+  },
+  "gp_equation": {
+    "source": "Dalfovo et al. 1999 Rev Mod Phys 71:463; Pethick & Smith 2002 (Cambridge)",
+    "results": {
+      "Cornell-Wieman 1995 (Rb-87)": {
+        "R_TF_um": 2.313,
+        "healing_len_nm": 279.18
+      },
+      "Ketterle 1995 (Na-23)": {
+        "R_TF_um": 14.744,
+        "healing_len_nm": 394.14
+      },
+      "MIT 1997 (Na-23, large)": {
+        "R_TF_um": 30.833,
+        "healing_len_nm": 376.93
+      },
+      "NIST 2001 (Rb-87, lattice)": {
+        "R_TF_um": 2.12,
+        "healing_len_nm": 109.62
+      }
+    }
+  }
+}
