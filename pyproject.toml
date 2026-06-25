@@ -65,7 +65,17 @@ include = ["bec_memory*", "experiments*"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
-addopts = "-v --tb=short"
+addopts = "-v --tb=short --strict-markers --strict-config"
+filterwarnings = [
+  # Treat all warnings as errors except for known upstream deprecations
+  "error",
+  # NumPy 1.x / 2.x transition warnings are expected in the compat shim
+  "ignore::DeprecationWarning:numpy",
+  "ignore::PendingDeprecationWarning:numpy",
+  # SciPy curve_fit covariance warnings on synthetic data
+  "ignore::scipy.optimize.OptimizeWarning",
+  "ignore::RuntimeWarning:scipy",
+]
 
 [tool.ruff]
 line-length = 95

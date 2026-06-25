@@ -34,6 +34,9 @@ from typing import Tuple
 
 import numpy as np
 
+# NumPy 2.0 renamed trapz → trapezoid; support both.
+_trapz = getattr(np, "trapezoid", np.trapz)
+
 
 @dataclass
 class GPEConfig:
@@ -125,7 +128,7 @@ class GPESolver:
         """
         psi = np.exp(-0.5 * ((self.x - center) / width) ** 2, dtype=float).astype(complex)
         if normalize:
-            norm = np.sqrt(np.trapezoid(np.abs(psi) ** 2, self.x))
+            norm = np.sqrt(_trapz(np.abs(psi) ** 2, self.x))
             psi /= norm
         self.psi = psi
         self.time = 0.0
@@ -139,7 +142,7 @@ class GPESolver:
         mu = 1.0  # chemical potential (set to 1 in dimensionless units)
         n = np.maximum(0.0, (mu - self.V_trap) / cfg.g_coupling)
         psi = np.sqrt(n).astype(complex)
-        norm = np.sqrt(np.trapezoid(np.abs(psi) ** 2, self.x))
+        norm = np.sqrt(_trapz(np.abs(psi) ** 2, self.x))
         if norm > 0:
             psi /= norm
         self.psi = psi
@@ -219,7 +222,7 @@ class GPESolver:
 
     def norm(self) -> float:
         """Return ⟨ψ|ψ⟩ (should remain ≈ 1.0 under unitary evolution)."""
-        return float(np.trapezoid(np.abs(self.psi) ** 2, self.x))
+        return float(_trapz(np.abs(self.psi) ** 2, self.x))
 
     def chemical_potential(self) -> float:
         """Estimate the chemical potential μ via energy expectation.
@@ -231,12 +234,12 @@ class GPESolver:
         # Kinetic energy via finite differences
         d2psi = np.gradient(np.gradient(psi, self.x), self.x)
         KE = -cfg.hbar ** 2 / (2.0 * cfg.mass) * np.real(
-            np.trapezoid(np.conj(psi) * d2psi, self.x)
+            _trapz(np.conj(psi) * d2psi, self.x)
         )
         # Potential energy
-        PE = float(np.real(np.trapezoid(np.conj(psi) * self.V_trap * psi, self.x)))
+        PE = float(np.real(_trapz(np.conj(psi) * self.V_trap * psi, self.x)))
         # Interaction energy
-        IE = 0.5 * cfg.g_coupling * float(np.trapezoid(np.abs(psi) ** 4, self.x))
+        IE = 0.5 * cfg.g_coupling * float(_trapz(np.abs(psi) ** 4, self.x))
         return KE + PE + IE
 
     def ground_state_energy(self) -> float:
@@ -297,16 +300,16 @@ class GPESolver:
             psi = np.exp(-(self.V_trap + g * np.abs(psi) ** 2) * dt / (2.0 * hbar)) * psi
 
             # Renormalize
-            norm = np.sqrt(np.trapezoid(np.abs(psi) ** 2, self.x))
+            norm = np.sqrt(_trapz(np.abs(psi) ** 2, self.x))
             if norm > 0:
                 psi /= norm
 
             # Check convergence every 50 steps
             if step % 50 == 0:
                 d2psi = np.gradient(np.gradient(psi, self.x), self.x)
-                KE = float(np.real(-hbar ** 2 / (2 * cfg.mass) * np.trapezoid(np.conj(psi) * d2psi, self.x)))
-                PE = float(np.real(np.trapezoid(np.conj(psi) * self.V_trap * psi, self.x)))
-                IE = 0.5 * g * float(np.trapezoid(np.abs(psi) ** 4, self.x))
+                KE = float(np.real(-hbar ** 2 / (2 * cfg.mass) * _trapz(np.conj(psi) * d2psi, self.x)))
+                PE = float(np.real(_trapz(np.conj(psi) * self.V_trap * psi, self.x)))
+                IE = 0.5 * g * float(_trapz(np.abs(psi) ** 4, self.x))
                 energy = KE + PE + IE
                 if abs(energy - prev_energy) < tol:
                     break
