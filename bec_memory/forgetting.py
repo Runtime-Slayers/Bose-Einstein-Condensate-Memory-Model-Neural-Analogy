@@ -38,7 +38,6 @@ from typing import Callable, Dict, Optional, Tuple
 
 import numpy as np
 from scipy.optimize import curve_fit
-from scipy.stats import pearsonr
 
 
 def _r_squared(y_true: np.ndarray, y_pred: np.ndarray) -> float:

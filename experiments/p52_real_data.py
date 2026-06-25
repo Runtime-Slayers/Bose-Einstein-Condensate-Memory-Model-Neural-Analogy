@@ -66,6 +66,14 @@ logger = logging.getLogger(__name__)
 
 
 def _setup_logging(verbose: bool) -> None:
+    # Ensure stdout/stderr handles Unicode characters on all terminals (including Windows)
+    for stream in (sys.stdout, sys.stderr):
+        if hasattr(stream, "reconfigure"):
+            try:
+                stream.reconfigure(encoding="utf-8", errors="backslashreplace")
+            except Exception:
+                pass
+
     level = logging.DEBUG if verbose else logging.INFO
     handler = logging.StreamHandler(sys.stdout)
     handler.setFormatter(

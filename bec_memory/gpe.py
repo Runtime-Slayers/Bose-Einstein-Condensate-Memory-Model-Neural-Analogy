@@ -35,7 +35,9 @@ from typing import Tuple
 import numpy as np
 
 # NumPy 2.0 renamed trapz → trapezoid; support both.
-_trapz = getattr(np, "trapezoid", np.trapz)
+_trapz = getattr(np, "trapezoid", None)
+if _trapz is None:
+    _trapz = getattr(np, "trapz")
 
 
 @dataclass

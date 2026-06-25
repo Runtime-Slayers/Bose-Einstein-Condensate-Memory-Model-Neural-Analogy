@@ -1,115 +1,163 @@
 {
+  "_meta": {
+    "script": "experiments/p52_real_data.py",
+    "generated_utc": "2026-06-25T09:17:54.375577+00:00",
+    "python_version": "3.13.3 (tags/v3.13.3:6280bb5, Apr  8 2025, 14:47:33) [MSC v.1943 64 bit (AMD64)]"
+  },
   "bec_parameters": {
-    "source": "Anderson 1995 Science 269:198; Davis 1995 PRL 75:3969 (Nobel Prize 2001)",
+    "source": "Anderson 1995 / Davis 1995 (Nobel 2001); Bagnato 1987",
     "experiments": {
       "Cornell-Wieman 1995 (Rb-87)": {
         "atom": "Rb-87",
         "Tc_nK": 170,
         "N_atoms": 2000,
-        "trap_freq_Hz": 180,
         "scattering_length_a0": 100,
-        "source": "Anderson et al. 1995 Science 269:198 (Nobel 2001)"
+        "doi": "10.1126/science.269.5221.198",
+        "source": "Anderson et al. 1995 Science 269:198 (Nobel Prize 2001)"
       },
       "Ketterle 1995 (Na-23)": {
         "atom": "Na-23",
         "Tc_nK": 2000,
         "N_atoms": 500000.0,
-        "trap_freq_Hz": 20,
         "scattering_length_a0": 52,
-        "source": "Davis et al. 1995 PRL 75:3969 (Nobel 2001)"
+        "doi": "10.1103/PhysRevLett.75.3969",
+        "source": "Davis et al. 1995 PRL 75:3969 (Nobel Prize 2001)"
       },
       "MIT 1997 (Na-23, large)": {
         "atom": "Na-23",
         "Tc_nK": 4000,
         "N_atoms": 5000000.0,
-        "trap_freq_Hz": 10,
         "scattering_length_a0": 52,
+        "doi": "10.1103/PhysRevLett.78.582",
         "source": "Mewes et al. 1997 PRL 78:582"
       },
-      "NIST 2001 (Rb-87, lattice)": {
+      "NIST 2001 (Rb-87, optical lattice)": {
         "atom": "Rb-87",
         "Tc_nK": 50,
         "N_atoms": 10000.0,
-        "trap_freq_Hz": 500,
         "scattering_length_a0": 100,
+        "doi": "10.1038/415039a",
         "source": "Greiner et al. 2002 Nature 415:39"
       }
-    }
-  },
-  "condensate_fraction": {
-    "source": "Bagnato 1987 PRA 35:4354; Pitaevskii & Stringari 2003 BEC book (Oxford)",
-    "model": "n0/N = max(0, 1-(T/Tc)^3) for harmonic trap",
-    "results": {
+    },
+    "condensate_fractions": {
       "Cornell-Wieman 1995 (Rb-87)": {
         "Tc_nK": 170,
-        "frac_at_half_Tc": 0.875,
-        "frac_at_0dot9Tc": 0.2709999999999999
+        "frac_at_0.5Tc": 0.875,
+        "frac_at_0.9Tc": 0.2709999999999999,
+        "frac_at_0.99Tc": 0.029700999999999977,
+        "source": "Bagnato 1987 PRA 35:4354; n0/N = max(0, 1-(T/Tc)^3)"
       },
       "Ketterle 1995 (Na-23)": {
         "Tc_nK": 2000,
-        "frac_at_half_Tc": 0.875,
-        "frac_at_0dot9Tc": 0.2709999999999999
+        "frac_at_0.5Tc": 0.875,
+        "frac_at_0.9Tc": 0.2709999999999999,
+        "frac_at_0.99Tc": 0.029700999999999977,
+        "source": "Bagnato 1987 PRA 35:4354; n0/N = max(0, 1-(T/Tc)^3)"
       },
       "MIT 1997 (Na-23, large)": {
         "Tc_nK": 4000,
-        "frac_at_half_Tc": 0.875,
-        "frac_at_0dot9Tc": 0.2709999999999999
+        "frac_at_0.5Tc": 0.875,
+        "frac_at_0.9Tc": 0.2709999999999999,
+        "frac_at_0.99Tc": 0.029700999999999977,
+        "source": "Bagnato 1987 PRA 35:4354; n0/N = max(0, 1-(T/Tc)^3)"
       },
-      "NIST 2001 (Rb-87, lattice)": {
+      "NIST 2001 (Rb-87, optical lattice)": {
         "Tc_nK": 50,
-        "frac_at_half_Tc": 0.875,
-        "frac_at_0dot9Tc": 0.2709999999999999
+        "frac_at_0.5Tc": 0.875,
+        "frac_at_0.9Tc": 0.2709999999999999,
+        "frac_at_0.99Tc": 0.029700999999999977,
+        "source": "Bagnato 1987 PRA 35:4354; n0/N = max(0, 1-(T/Tc)^3)"
       }
     }
   },
-  "neural_analogy": {
-    "source": "Penrose-Hameroff 1996 Math Comp Simul 40:453; Strogatz 2000 Physica D 143:1-20",
-    "note": "BEC coherence length \u2194 hippocampal memory consolidation radius analogy",
-    "metrics": {
-      "coherence_length_um": [
-        0.828936,
-        0.241674,
-        0.17089,
-        1.528483
-      ],
-      "memory_capacity_bits": [
-        2000.0,
-        500000.0,
-        5000000.0,
-        10000.0
-      ],
-      "decoherence_time_ms": [
-        0.149773,
-        0.012731,
-        0.006365,
-        0.509229
-      ],
-      "temp_fraction": [
-        0.3,
-        0.3,
-        0.3,
-        0.3
-      ]
+  "forgetting_curves": {
+    "source": "Ebbinghaus 1885; Wixted & Ebbesen 1991 Psych. Sci. 2:409",
+    "model": "M(t)=M0*max(0,1-(T0+alpha*t)^3/Tc^3)",
+    "scenarios": {
+      "high_attention": {
+        "T0": 0.05,
+        "alpha": 0.01,
+        "half_life_days": 30.0,
+        "retention_at_1day": 0.9997836385946092,
+        "retention_at_7days": 0.9982618665434709,
+        "retention_at_30days": 0.957125
+      },
+      "normal_attention": {
+        "T0": 0.1,
+        "alpha": 0.03,
+        "half_life_days": 23.076923076923077,
+        "retention_at_1day": 0.9977979091163376,
+        "retention_at_7days": 0.9700060559504564,
+        "retention_at_30days": 3.3306690738754696e-16
+      },
+      "low_attention": {
+        "T0": 0.3,
+        "alpha": 0.07,
+        "half_life_days": 7.023411371237458,
+        "retention_at_1day": 0.9492507886472505,
+        "retention_at_7days": 0.5038863128770941,
+        "retention_at_30days": 0.0
+      }
     }
   },
-  "gp_equation": {
-    "source": "Dalfovo et al. 1999 Rev Mod Phys 71:463; Pethick & Smith 2002 (Cambridge)",
-    "results": {
+  "bogoliubov_spectrum": {
+    "source": "Bogoliubov 1947 J.Phys.USSR 11:23; Pitaevskii & Stringari 2003",
+    "model": "E_k = sqrt(eps_k*(eps_k + 2*g*n0))",
+    "experiments": {
       "Cornell-Wieman 1995 (Rb-87)": {
-        "R_TF_um": 2.313,
-        "healing_len_nm": 279.18
+        "n0_fraction": 0.973,
+        "healing_length_xi": 0.16029264090937534,
+        "sound_speed_cs": 4.411349000022556,
+        "k_transition": 6.238589584192889
       },
       "Ketterle 1995 (Na-23)": {
-        "R_TF_um": 14.744,
-        "healing_len_nm": 394.14
+        "n0_fraction": 0.973,
+        "healing_length_xi": 0.010137796748742194,
+        "sound_speed_cs": 69.74955196988724,
+        "k_transition": 98.64076236526155
       },
       "MIT 1997 (Na-23, large)": {
-        "R_TF_um": 30.833,
-        "healing_len_nm": 376.93
+        "n0_fraction": 0.973,
+        "healing_length_xi": 0.003205852818187507,
+        "sound_speed_cs": 220.56745000112778,
+        "k_transition": 311.92947920964446
       },
-      "NIST 2001 (Rb-87, lattice)": {
-        "R_TF_um": 2.12,
-        "healing_len_nm": 109.62
+      "NIST 2001 (Rb-87, optical lattice)": {
+        "n0_fraction": 0.973,
+        "healing_length_xi": 0.0716850482732654,
+        "sound_speed_cs": 9.864076236526156,
+        "k_transition": 13.949910393977447
+      }
+    }
+  },
+  "retrieval_probability": {
+    "source": "BEC stimulated emission analogy",
+    "model": "P = n0_frac * (1 + cue_strength) / 2",
+    "data": {
+      "T=0.1": {
+        "weak_cue": 0.5993999999999999,
+        "strong_cue": 0.94905
+      },
+      "T=0.3": {
+        "weak_cue": 0.5838,
+        "strong_cue": 0.9243499999999999
+      },
+      "T=0.5": {
+        "weak_cue": 0.525,
+        "strong_cue": 0.8312499999999999
+      },
+      "T=0.7": {
+        "weak_cue": 0.3942,
+        "strong_cue": 0.62415
+      },
+      "T=0.9": {
+        "weak_cue": 0.16259999999999994,
+        "strong_cue": 0.2574499999999999
+      },
+      "T=0.99": {
+        "weak_cue": 0.017820599999999985,
+        "strong_cue": 0.028215949999999976
       }
     }
   }
